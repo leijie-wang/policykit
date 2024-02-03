@@ -280,6 +280,15 @@
         </div>
       </div>
       <div class="form-row">
+        <label class="control-label col-sm-2" for="fail">Permission:</label>
+        <div class="col-sm-10">
+            {% for permission in user.user_permissions.all %}
+                <p>{{ permission }}</p>
+            {% endfor %}
+        
+        </div>
+      </div>
+      <div class="form-row">
         <div class="col-sm-2"></div>
         <div class="col-sm-10">
           <button type="button" class="btn" id="download">Download policy</button>
@@ -300,11 +309,7 @@
   document.getElementById("editpolicy").addEventListener("click", editPolicy);
   document.getElementById("proposeAction").addEventListener("click", navActions);
   
-  {% for permission in user.user_permissions.all %}
-    let permission = `{{ permission.name }}`;
-    console.log(permission);
-  {% endfor %}
-  
+ 
   {% for value in platform_policies %}
     document.getElementById("platform_{{value.pk}}").addEventListener("click", function(){ showModal('code', {
       pk: `{{value.pk}}`,

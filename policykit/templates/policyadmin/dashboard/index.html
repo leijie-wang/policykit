@@ -299,7 +299,12 @@
   document.getElementById("download").addEventListener("click", download);
   document.getElementById("editpolicy").addEventListener("click", editPolicy);
   document.getElementById("proposeAction").addEventListener("click", navActions);
-
+  
+  {% for permission in user.user_permissions.all %}
+    let permission = `{{ permission.name }}`;
+    console.log(permission);
+  {% endfor %}
+  
   {% for value in platform_policies %}
     document.getElementById("platform_{{value.pk}}").addEventListener("click", function(){ showModal('code', {
       pk: `{{value.pk}}`,
